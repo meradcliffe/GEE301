@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <arg name="paused" value="true"/>
+  </include>
+  
+  <param name="robot_description" textfile="$(find ridgeback_gazebo)/urdf/full_final.urdf" />
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" output="screen" respawn="false" args=" -param robot_description -urdf -model base_arm"/>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0"/>
+  </node>
+ 
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
+  </node>
+  <!--<node pkg="ridgeback_navigation" type="tf_listener.py" name="listener" /> -->
+ 
+</launch>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch> 
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  </include>
+  
+  <param name="robot_description" textfile="$(find ridgeback_gazebo)/urdf/arm.urdf"/>
+  <node name="spawn_urdf2" pkg="gazebo_ros" type="spawn_model" args="-x 1 -y 1 -param robot_description -urdf -model arm"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+  </node>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+  <node name="rviz" pkg="rviz" type="rviz"/>
+
+</launch>
